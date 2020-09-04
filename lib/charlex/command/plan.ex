@@ -17,7 +17,10 @@ defmodule Charlex.Command.Plan do
   end
 
   @impl true
-  def run(_context, _args) do
-    "THIS IS THE GREATEST PLAAAAAAAN"
+  def run(context, _args) do
+    Nostrum.Api.create_message(
+      context.message.channel_id,
+      "THIS IS THE GREATEST PLAAAAAAAN"
+    )
   end
 end

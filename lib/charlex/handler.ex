@@ -14,9 +14,7 @@ defmodule Charlex.Handler do
         |> hd
         |> String.downcase()
 
-      output = Map.get(commands, command) |> run_command([context, []])
-
-      Api.create_message(message.channel_id, output)
+      Map.get(commands, command) |> run_command([context, []])
     end
   end
 
