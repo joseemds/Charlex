@@ -1,7 +1,11 @@
 defmodule Charlex.Server do
   use GenServer
 
-  defstruct(owner: "", commands: %{}, prefix: Application.get_env(:charlex, :prefix) || ":")
+  defstruct(
+    owner: "",
+    commands: %{},
+    prefixes: %{global: Application.get_env(:charlex, :prefix) || "::"}
+  )
 
   def start_link(_opts) do
     GenServer.start_link(__MODULE__, %__MODULE__{}, name: __MODULE__)
