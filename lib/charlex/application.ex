@@ -7,7 +7,8 @@ defmodule Charlex.Application do
 
   def start(_type, _args) do
     children = [
-      Charlex.Consumer
+      Charlex.Consumer,
+      Charlex.Server
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

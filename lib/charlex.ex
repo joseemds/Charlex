@@ -1,18 +1,19 @@
 defmodule Charlex do
-  @moduledoc """
-  Documentation for Charlex.
-  """
+  alias Charlex.Server
 
-  @doc """
-  Hello world.
+  def get_state do
+    GenServer.call(Server, :get_state)
+  end
 
-  ## Examples
+  def get_owner() do
+    GenServer.call(Server, :get_owner)
+  end
 
-      iex> Charlex.hello()
-      :world
+  def fetch_owner() do
+    GenServer.cast(Server, :fetch_owner)
+  end
 
-  """
-  def hello do
-    :world
+  def put_commands(commands) do
+    GenServer.call(Server, {:put_commands, commands})
   end
 end
