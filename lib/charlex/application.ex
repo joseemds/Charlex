@@ -7,8 +7,7 @@ defmodule Charlex.Application do
 
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: Charlex.Worker.start_link(arg)
-      # {Charlex.Worker, arg}
+      Charlex.Consumer
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
