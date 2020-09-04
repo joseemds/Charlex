@@ -7,9 +7,11 @@ defmodule Charlex.Command do
 
   @callback run(context :: Map.t(), args :: [String.t()] | any()) :: String.t() | any()
 
+  @optional_callbacks usage: 0, description: 0, parse_args: 1
+
   defmacro __using__(_opts) do
     quote do
-      @behavior unquote(__MODULE__)
+      @behaviour unquote(__MODULE__)
 
       @impl true
       def usage, do: []
@@ -22,6 +24,8 @@ defmodule Charlex.Command do
 
       @impl true
       def parse_args(args), do: String.split(args)
+
+      defoverridable parse_args: 1, description: 0, run: 2, usage: 0
     end
   end
 end

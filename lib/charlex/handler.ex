@@ -3,6 +3,8 @@ defmodule Charlex.Handler do
   require Logger
 
   def handle_message(message) do
+    context = %{message: message}
+
     with {:ok, content, _prefix} <- extract_content(message) do
       %{commands: commands} = Charlex.get_state()
 
@@ -12,8 +14,7 @@ defmodule Charlex.Handler do
         |> hd
         |> String.downcase()
 
-      Logger.debug(Map.get(commands, command))
-      output = Map.get(commands, command) |> run_command
+      output = Map.get(commands, command) |> run_command([context, []])
 
       Api.create_message(message.channel_id, output)
     end

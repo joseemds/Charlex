@@ -17,7 +17,7 @@ defmodule Charlex.Command.Plan do
   end
 
   @impl true
-  def run() do
+  def run(_context, _args) do
     "THIS IS THE GREATEST PLAAAAAAAN"
   end
 end
