@@ -19,6 +19,9 @@ defmodule Charlex.Command do
 
       @impl true
       def run(_context, _args), do: :ok
+
+      @impl true
+      def parse_args(args), do: String.split(args)
     end
   end
 end
