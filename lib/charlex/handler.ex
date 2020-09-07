@@ -1,5 +1,4 @@
 defmodule Charlex.Handler do
-  alias Nostrum.Api
   require Logger
 
   def handle_message(message) do
@@ -18,7 +17,7 @@ defmodule Charlex.Handler do
     end
   end
 
-  defp run_command(command_module, args \\ []) do
+  defp run_command(command_module, args) do
     apply(command_module, :run, args)
   end
 
