@@ -3,4 +3,4 @@ import Config
 config :nostrum,
   num_shards: :auto
 
-import_config "#{config_env()}.exs"
+import_config "#{Mix.env()}.exs"
