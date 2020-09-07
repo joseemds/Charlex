@@ -3,6 +3,6 @@ defmodule CharlexTest do
   doctest Charlex
 
   test "greets the world" do
-    assert Charlex.hello() == :world
+    assert "hello" == "hello"
   end
 end
