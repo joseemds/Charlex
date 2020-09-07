@@ -1,0 +1,55 @@
+name: Charlex CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+   
+  test:
+    
+    name: Build and run tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Elixir
+      uses: actions/setup-elixir@v1
+      with:
+        elixir-version: '1.10.3' # Define the elixir version [required]
+        otp-version: '22.3' # Define the OTP version [required]
+    - name: Restore dependencies cache
+      uses: actions/cache@v2
+      with:
+        path: deps
+        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        restore-keys: ${{ runner.os }}-mix-
+        
+    - name: Install dependencies
+      run: mix deps.get
+
+
+    - name: Run tests
+      run: mix test
+    
+   
+    
+  deploy:
+    needs: [test]
+
+    name: Deploy on Gigalixir
+    runs-on: ubuntu-latest
+
+    steps:
+  
+    - name: Gigalixir Action Deploy
+      uses: mhanberg/gigalixir-action@v0.3.0
+      with:
+        GIGALIXIR_USERNAME:  ${{secrets.GIGALIXIR_USERNAME}}
+        GIGALIXIR_PASSWORD: ${{secrets.GIGALIXIR_PASSWORD}}
+        GIGALIXIR_APP: ${{secrets.GIGALIXIR_APP}}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        MIGRATIONS: false 
+    
