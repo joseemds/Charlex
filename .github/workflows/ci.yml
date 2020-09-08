@@ -58,4 +58,4 @@ jobs:
     - run: sudo pip install gigalixir --ignore-installed six
     - run: gigalixir login -e "${{ secrets.GIGALIXIR_USERNAME }}" -y -p "${{ secrets.GIGALIXIR_PASSWORD }}"
     - run: gigalixir git:remote ${{ secrets.GIGALIXIR_APP }}
-    - run: git push -f gigalixir master
+    - run: git -c http.extraheader="GIGALIXIR-HOT:true" push -f gigalixir master
