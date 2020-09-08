@@ -2,9 +2,9 @@ name: Charlex CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ production ]
   pull_request:
-    branches: [ master ]
+    branches: [ production ]
 
 env:
   MIX_ENV: test
