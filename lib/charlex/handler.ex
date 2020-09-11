@@ -10,10 +10,24 @@ defmodule Charlex.Handler do
       command =
         content
         |> String.split()
-        |> hd
+        |> List.first()
         |> String.downcase()
 
-      Map.get(commands, command) |> run_command([context, []])
+      args =
+        content
+        |> String.split()
+        |> Kernel.tl()
+
+      cond do
+        Map.has_key?(commands, command) == true ->
+          Map.get(commands, command) |> run_command([context, args])
+
+        true ->
+          Nostrum.Api.create_message(
+            context.message.channel_id,
+            "Sorry man, i dont know how to do this"
+          )
+      end
     end
   end
 
