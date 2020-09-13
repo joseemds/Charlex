@@ -21,7 +21,12 @@ defmodule Charlex.Consumer do
   def handle_event({:READY, _msg, _ws_state}) do
     alias Charlex.Command
 
-    %{"plan" => Command.Plan, "distract" => Command.Distract, "padoru" => Command.Padoru}
+    %{
+      "plan" => Command.Plan,
+      "distract" => Command.Distract,
+      "padoru" => Command.Padoru,
+      "dnd" => Command.Dnd
+    }
     |> Charlex.put_commands()
 
     Charlex.fetch_owner()

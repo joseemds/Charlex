@@ -25,7 +25,7 @@ defmodule Charlex.Handler do
         true ->
           Nostrum.Api.create_message(
             context.message.channel_id,
-            "Sorry man, i dont know how to do this"
+            "Ehhh i dont know what that means"
           )
       end
     end
