@@ -14,10 +14,10 @@ defmodule Charlex.Command do
       @behaviour unquote(__MODULE__)
 
       @impl true
-      def usage, do: []
+      def usage, do: "This command is without usage, will add it soon"
 
       @impl true
-      def description, do: []
+      def description, do: "This command is without description, will add it soon"
 
       @impl true
       def run(_context, _args), do: :ok

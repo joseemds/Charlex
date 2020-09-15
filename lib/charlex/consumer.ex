@@ -25,7 +25,8 @@ defmodule Charlex.Consumer do
       "plan" => Command.Plan,
       "distract" => Command.Distract,
       "padoru" => Command.Padoru,
-      "dnd" => Command.Dnd
+      "dnd" => Command.Dnd,
+      "help" => Command.Help
     }
     |> Charlex.put_commands()
 

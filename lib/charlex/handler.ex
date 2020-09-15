@@ -5,7 +5,7 @@ defmodule Charlex.Handler do
     context = %{message: message}
 
     with {:ok, content, _prefix} <- extract_content(message) do
-      %{commands: commands} = Charlex.get_state()
+      commands = Charlex.get_commands()
 
       command =
         content
