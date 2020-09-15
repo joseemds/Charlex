@@ -13,14 +13,11 @@ defmodule Charlex.Handler do
         |> List.first()
         |> String.downcase()
 
-      args =
-        content
-        |> String.split()
-        |> Kernel.tl()
-
       cond do
         Map.has_key?(commands, command) == true ->
-          Map.get(commands, command) |> run_command([context, args])
+          module = Map.get(commands, command)
+
+          run_command(module, [context, parse_command_args(module, content)])
 
         true ->
           Nostrum.Api.create_message(
@@ -29,6 +26,10 @@ defmodule Charlex.Handler do
           )
       end
     end
+  end
+
+  defp parse_command_args(command_module, command) do
+    apply(command_module, :parse_args, [command])
   end
 
   defp run_command(command_module, args) do

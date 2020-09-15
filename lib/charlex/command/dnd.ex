@@ -1,4 +1,6 @@
 defmodule Charlex.Command.Dnd do
+  use Charlex.Command
+
   alias Nostrum.Api
   alias Charlex.Api.DndClient
   require Logger

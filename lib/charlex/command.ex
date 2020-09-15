@@ -23,7 +23,7 @@ defmodule Charlex.Command do
       def run(_context, _args), do: :ok
 
       @impl true
-      def parse_args(args), do: String.split(args)
+      def parse_args(args), do: args |> String.split() |> Kernel.tl()
 
       defoverridable parse_args: 1, description: 0, run: 2, usage: 0
     end
