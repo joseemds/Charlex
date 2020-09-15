@@ -1,6 +1,11 @@
 defmodule Charlex do
   alias Charlex.Server
 
+  def get_commands do
+    %{commands: commands} = get_state()
+    commands
+  end
+
   def get_state do
     GenServer.call(Server, :get_state)
   end
