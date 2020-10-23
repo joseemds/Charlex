@@ -22,6 +22,7 @@ defmodule Charlex.Consumer do
     alias Charlex.Command
 
     %{
+      "profile" => Command.Profile,
       "plan" => Command.Plan,
       "distract" => Command.Distract,
       "padoru" => Command.Padoru,

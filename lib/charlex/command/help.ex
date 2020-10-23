@@ -8,16 +8,25 @@ defmodule Charlex.Command.Help do
 
   @impl true
   def run(context, args) do
+    commands = Charlex.get_commands()
+
     case args do
       [command_name] ->
-        Api.create_message(context.message.channel_id,
-          embed:
-            %Nostrum.Struct.Embed{}
-            |> put_title("Help for #{command_name}")
-            |> put_color(@embed_color)
-            |> put_description(get_command_description(command_name))
-            |> put_field("Usage", get_command_usage(command_name))
-        )
+        if command_name in commands do
+          Api.create_message(context.message.channel_id,
+            embed:
+              %Nostrum.Struct.Embed{}
+              |> put_title("Help for #{command_name}")
+              |> put_color(@embed_color)
+              |> put_description(get_command_description(command_name))
+              |> put_field("Usage", get_command_usage(command_name))
+          )
+        else
+          Api.create_message(
+            context.message.channel_id,
+            "Man, i cant tell u how this work if i dont know how to do it"
+          )
+        end
 
       _ ->
         Api.create_message(context.message.channel_id,
@@ -32,7 +41,6 @@ defmodule Charlex.Command.Help do
 
   def format_command_list(command_list) do
     """
-    List of commands
     #{Map.keys(command_list) |> Enum.join("\n")}
     """
   end
