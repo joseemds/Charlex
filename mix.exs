@@ -24,7 +24,8 @@ defmodule Charlex.MixProject do
     [
       {:httpoison, "~> 1.7"},
       {:jason, "~> 1.2"},
-      {:nostrum, "~> 0.4"}
+      {:nostrum, "~> 0.4"},
+      {:timex, "~> 3.6"}
     ]
   end
 end

@@ -6,7 +6,7 @@ defmodule Charlex.Command.Padoru do
   def run(context, _args) do
     Api.create_message(
       context.message.channel_id,
-      "#{Date.diff(~D[2020-12-25], Date.utc_today())} days until Christmas"
+      "#{Timex.diff(~D[2020-12-25], Timex.now("America/Sao_Paulo"), :days)} days until Christmas"
     )
   end
 end
