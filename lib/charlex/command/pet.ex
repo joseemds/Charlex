@@ -5,7 +5,7 @@ defmodule Charlex.Command.Pet do
   @impl true
   def run(context, _args) do
     Api.create_message(context.message.channel_id,
-      file: Path.expand("assets/distraction.gif")
+      file: Path.expand("assets/petdudu.gif")
     )
   end
 end
