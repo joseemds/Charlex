@@ -3,22 +3,31 @@ defmodule Charlex.Command.Padoru do
   alias Nostrum.Api
 
   def get_left_days(date) do
-    case Timex.diff(date, Timex.now(), :days) do
-      1 ->
+    diff = Timex.diff(date, Timex.now(), :days)
+
+    cond do
+      diff == 1 ->
         "OMG ALMOST THERE ONLY ONE DAY"
 
-      0 ->
-        "HAPPY PADORUUUUUUUUUUUUUUUUUUUUU"
+      diff == 0 ->
+        "HAPPY PADORUUUUUUUUUUUUUUUUUUUU"
 
+      diff < 0 ->
+        date = date |> Map.put(:year, date.year + 1)
+        "#{Timex.diff(date, Timex.now("America/Sao_Paulo"), :days)} days until christmas"
 
-      _ ->
+      true ->
         "#{Timex.diff(date, Timex.now("America/Sao_Paulo"), :days)} days until christmas"
     end
   end
 
   @impl true
   def run(context, _args) do
-    christmas_date = Timex.from_iso_day(360) 
+    christmas_date =
+      cond do
+        Timex.is_leap?(Timex.now()) == true -> Timex.from_iso_day(360)
+        true -> Timex.from_iso_day(359)
+      end
 
     Api.create_message(
       context.message.channel_id,
