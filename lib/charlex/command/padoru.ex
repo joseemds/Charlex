@@ -3,7 +3,7 @@ defmodule Charlex.Command.Padoru do
   alias Nostrum.Api
 
   def get_left_days(date) do
-    diff = Timex.diff(date, Timex.now(), :days)
+    diff = Timex.diff(date, Timex.now("America/Sao_Paulo"), :days)
 
     cond do
       diff == 1 ->
@@ -25,7 +25,7 @@ defmodule Charlex.Command.Padoru do
   def run(context, _args) do
     christmas_date =
       cond do
-        Timex.is_leap?(Timex.now()) == true -> Timex.from_iso_day(360)
+        Timex.is_leap?(Timex.now("America/Sao_Paulo")) == true -> Timex.from_iso_day(360)
         true -> Timex.from_iso_day(359)
       end
 
