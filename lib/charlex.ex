@@ -3,8 +3,15 @@ defmodule Charlex do
 
   def get_commands do
     %{commands: commands} = get_state()
-    commands
+    commands 
   end
+
+  def alo(som) do 
+    som
+    |> Enum.map(fn x -> x end)
+         |> Enum.filter(fn x -> x == 2 end)
+  end
+
 
   def get_state do
     GenServer.call(Server, :get_state)

@@ -10,14 +10,6 @@ defmodule Charlex.Consumer do
     Charlex.Handler.handle_message(msg)
   end
 
-  # def handle_event({:MESSAGE_REACTION_ADD, content, _ws_state}) do
-  #   Nostrum.Api.create_message(content.channel_id, "Emoji reaction added #{content.emoji.name}")
-  # end
-
-  # def handle_event({:MESSAGE_REACTION_REMOVE, content, _ws_state}) do
-  #   Nostrum.Api.create_message(content.channel_id, "Emoji reaction removed #{content.emoji.name}")
-  # end
-
   def handle_event({:READY, _msg, _ws_state}) do
     alias Charlex.Command
 

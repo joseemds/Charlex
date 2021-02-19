@@ -7,7 +7,6 @@ defmodule Charlex.Command.Profile do
     avatar_url =
       user_id
       |> String.replace(~r/[^\d]/, "")
-      |> Nostrum.Api.get_user!()
       |> Nostrum.Struct.User.avatar_url()
 
     Nostrum.Api.create_message(context.message.channel_id, avatar_url)
